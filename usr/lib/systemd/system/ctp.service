@@ -1,0 +1,23 @@
+#
+# description: Unit file for the CTP service (Systemd)
+#
+# History:
+# 2016-01-11 Jordi Huguet: Modified for CTP service
+# 2014-10-30 Ali Erdinc Koroglu: Template script created to daemonize java applications on Systemd-style systems (CentOS7/RHEL7)
+
+[Unit]
+Description=CTP Service
+After=syslog.target
+After=network.target
+
+[Service]
+User=ctp
+Type=forking
+EnvironmentFile=/etc/sysconfig/ctp
+ExecStart=/opt/ctp/ctp-wrapper.sh
+ExecStop=/bin/kill -TERM $MAINPID
+TimeoutSec=300
+
+[Install]
+WantedBy=multi-user.target
+

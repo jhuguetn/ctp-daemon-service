@@ -1,0 +1,24 @@
+#
+# description: Configuration file for the CTP service (Systemd)
+#
+# History:
+# 2016-01-11 Jordi Huguet: Modified for CTP service
+# 2014-10-30 Ali Erdinc Koroglu: Template script created to daemonize java applications on Systemd-style systems (CentOS7/RHEL7)
+
+# Set this to your Java installation
+#JAVA_HOME=/usr/lib/jvm/java-openjdk
+JAVA_HOME=/usr/bin/java
+ 
+companyName="rsna"                                      # company name with the first letter in lowercase
+serviceNameLo="ctp"                                     # service name with the first letter in lowercase
+serviceName="CTP"                                       # service name
+serviceUser="ctp"                                       # OS user name for the service
+serviceUserGroup="ctp"                                  # OS user group for the service
+JAVA_USER="ctp"
+JAVA_STDOUT="/var/log/$companyName/$serviceNameLo.log"
+JAVA_STDERR="/var/log/$companyName/$serviceNameLo-error.log"
+JAVA_BIN="$JAVA_HOME/bin/java"
+JAVA_APPDIR="/opt/ctp/bin"
+ARG1="-jar $JAVA_APPDIR/Runner.jar"
+ARG2="start"
+#ARGS="-jar $JAVA_APPDIR/Runner.jar start"
